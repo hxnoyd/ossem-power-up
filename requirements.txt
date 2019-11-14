@@ -3,3 +3,4 @@ elasticsearch
 mistune
 openpyxl
 pyaml
+lxml
