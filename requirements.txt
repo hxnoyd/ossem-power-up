@@ -1,0 +1,5 @@
+beautifulsoup4
+elasticsearch
+mistune
+openpyxl
+pyaml

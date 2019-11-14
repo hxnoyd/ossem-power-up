@@ -1,0 +1,38 @@
+# OSSEM CIM Profile - Default
+---
+destination:
+    - dst_ip
+    - dst_port
+file:
+    - file_name
+    - file_path
+hash:
+    - hash_md5
+    - hash_sha1
+    - hash_sha256
+host:
+    - host_name
+    - host_domain
+    - dst_host_name
+    - src_host_name
+ip:
+    - dst_ip
+    - src_ip
+module:
+    - module_loaded
+pipe:
+    - pipe_name
+    - src_port
+    - dst_port
+process:
+    - process_name
+    - process_path
+    - process_command_line
+registry:
+    - registry_key_path
+source:
+    - src_ip
+    - src_port
+user:
+    - user_name
+    - user_domain

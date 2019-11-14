@@ -1,0 +1,727 @@
+att&ck data source: Process use of network
+sub data source: process network connection allow
+source data object: user
+relationship: connected_to
+destination data object: ip
+eventid: '3'
+---
+att&ck data source: Windows event logs
+sub data source: kerberos TGT request
+source data object: user
+relationship: requested
+destination data object: ticket granting ticket
+eventid: '4768'
+---
+att&ck data source: Windows event logs
+sub data source: kerberos TGT request
+source data object: user
+relationship: requested
+destination data object: ticket granting ticket
+eventid: '4768'
+---
+att&ck data source: Windows event logs, Authentication logs
+sub data source: kerberos TGT authentication failure
+source data object: user
+relationship: authenticated_with
+destination data object: ticket granting ticket
+eventid: '4771'
+---
+att&ck data source: Windows event logs
+sub data source: kerberos service ticket request
+source data object: user
+relationship: requested
+destination data object: service ticket
+eventid: '4769'
+---
+att&ck data source: Windows event logs
+sub data source: kerberos service ticket renewal
+source data object: user
+relationship: renewed
+destination data object: service ticket
+eventid: '4770'
+---
+att&ck data source: Windows event logs
+sub data source: kerberos service ticket failure
+source data object: user
+relationship: requested
+destination data object: service ticket
+eventid: '4773'
+---
+att&ck data source: Windows event logs
+sub data source: user rdp session
+source data object: user
+relationship: disconnected_from
+destination data object: host
+eventid: '4779'
+---
+att&ck data source: Windows event logs
+sub data source: user rdp session
+source data object: user
+relationship: connected_to
+destination data object: host
+eventid: '4778'
+---
+att&ck data source: Windows event logs
+sub data source: user lock operation
+source data object: user
+relationship: locked
+destination data object: host
+eventid: '4800'
+---
+att&ck data source: Windows event logs
+sub data source: user unlock operation
+source data object: user
+relationship: unlocked
+destination data object: host
+eventid: '4801'
+---
+att&ck data source: Windows event logs
+sub data source: computer account creation
+source data object: user
+relationship: created
+destination data object: computer
+eventid: '4741'
+---
+att&ck data source: Windows event logs
+sub data source: computer account change
+source data object: user
+relationship: changed
+destination data object: computer
+eventid: '4742'
+---
+att&ck data source: Windows event logs
+sub data source: computer account deletion
+source data object: user
+relationship: deleted
+destination data object: computer
+eventid: '4743'
+---
+att&ck data source: Windows event logs
+sub data source: distribution group creation
+source data object: user
+relationship: created
+destination data object: group
+eventid: '4749'
+---
+att&ck data source: Windows event logs
+sub data source: distribution group change
+source data object: user
+relationship: changed
+destination data object: group
+eventid: '4750'
+---
+att&ck data source: Windows event logs
+sub data source: distribution group member addition
+source data object: user
+relationship: added
+destination data object: user
+eventid: '4751'
+---
+att&ck data source: Windows event logs
+sub data source: distribution group member removal
+source data object: user
+relationship: removed
+destination data object: user
+eventid: '4752'
+---
+att&ck data source: Windows event logs
+sub data source: distribution group deletion
+source data object: user
+relationship: deleted
+destination data object: group
+eventid: '4753'
+---
+att&ck data source: Windows event logs
+sub data source: security group creation
+source data object: user
+relationship: created
+destination data object: group
+eventid: '4731'
+---
+att&ck data source: Windows event logs
+sub data source: security group member addition
+source data object: user
+relationship: added
+destination data object: user
+eventid: '4732'
+---
+att&ck data source: Windows event logs
+sub data source: security group member removal
+source data object: user
+relationship: removed
+destination data object: user
+eventid: '4733'
+---
+att&ck data source: Windows event logs
+sub data source: security group deletion
+source data object: user
+relationship: deleted
+destination data object: group
+eventid: '4734'
+---
+att&ck data source: Windows event logs
+sub data source: security group change
+source data object: user
+relationship: changed
+destination data object: group
+eventid: '4735'
+---
+att&ck data source: Windows event logs
+sub data source: security group type change
+source data object: user
+relationship: changed_type
+destination data object: group
+eventid: '4764'
+---
+att&ck data source: Windows event logs
+sub data source: security group enumeration
+source data object: user
+relationship: enumerated
+destination data object: group members
+eventid: '4799'
+---
+att&ck data source: Windows event logs
+sub data source: user account creation
+source data object: user
+relationship: created
+destination data object: user
+eventid: '4720'
+---
+att&ck data source: Windows event logs
+sub data source: user account enable
+source data object: user
+relationship: enabled
+destination data object: user
+eventid: '4722'
+---
+att&ck data source: Windows event logs
+sub data source: user account password change
+source data object: user
+relationship: changed_password
+destination data object: user
+eventid: '4723'
+---
+att&ck data source: Windows event logs
+sub data source: user account password reset
+source data object: user
+relationship: reset_password
+destination data object: user
+eventid: '4724'
+---
+att&ck data source: Windows event logs
+sub data source: user account disable
+source data object: user
+relationship: disabled
+destination data object: user
+eventid: '4725'
+---
+att&ck data source: Windows event logs
+sub data source: user account deletion
+source data object: user
+relationship: deleted
+destination data object: user
+eventid: '4726'
+---
+att&ck data source: Windows event logs
+sub data source: user account change
+source data object: user
+relationship: changed
+destination data object: user
+eventid: '4738'
+---
+att&ck data source: Windows event logs
+sub data source: user account lock
+source data object: user
+relationship: locked
+destination data object: user
+eventid: '4740'
+---
+att&ck data source: Windows event logs
+sub data source: user account unlock
+source data object: user
+relationship: unlocked
+destination data object: user
+eventid: '4767'
+---
+att&ck data source: Windows event logs
+sub data source: user account name change
+source data object: user
+relationship: changed_name
+destination data object: user
+eventid: '4781'
+---
+att&ck data source: Windows event logs
+sub data source: user account group enumeration
+source data object: user
+relationship: enumerated
+destination data object: group
+eventid: '4798'
+---
+att&ck data source: Windows event logs
+sub data source: directory service object access
+source data object: user
+relationship: accessed
+destination data object: ad object
+eventid: '4662'
+---
+att&ck data source: Windows event logs
+sub data source: directoy service object handle request
+source data object: user
+relationship: requested_a_handle
+destination data object: ad object
+eventid: '4661'
+---
+att&ck data source: Windows event logs
+sub data source: directory service object modification
+source data object: user
+relationship: modified
+destination data object: ad object
+eventid: '5136'
+---
+att&ck data source: Windows event logs
+sub data source: directory service object creation
+source data object: user
+relationship: created
+destination data object: ad object
+eventid: '5137'
+---
+att&ck data source: Windows event logs
+sub data source: directory service object restoration
+source data object: user
+relationship: restored
+destination data object: ad object
+eventid: '5138'
+---
+att&ck data source: Windows event logs
+sub data source: directory service object move
+source data object: user
+relationship: moved
+destination data object: ad object
+eventid: '5139'
+---
+att&ck data source: Windows event logs
+sub data source: directory service object deletion
+source data object: user
+relationship: deleted
+destination data object: ad object
+eventid: '5141'
+---
+att&ck data source: Windows event logs, Authentication logs
+sub data source: user account successful authentication
+source data object: user
+relationship: authenticated
+destination data object: host
+eventid: '4624'
+---
+att&ck data source: Windows event logs, Authentication logs
+sub data source: user account authentication with explicit credential
+source data object: user
+relationship: authenticated
+destination data object: host
+eventid: '4648'
+---
+att&ck data source: File monitoring
+sub data source: file access
+source data object: user
+relationship: accessed
+destination data object: file
+eventid: '5145'
+---
+att&ck data source: Windows event logs
+sub data source: network share access
+source data object: user
+relationship: accessed
+destination data object: network share
+eventid: '5140'
+---
+att&ck data source: Windows event logs
+sub data source: network share addition
+source data object: user
+relationship: added
+destination data object: network share
+eventid: '5142'
+---
+att&ck data source: Windows event logs
+sub data source: network share modification
+source data object: user
+relationship: modified
+destination data object: network share
+eventid: '5143'
+---
+att&ck data source: Windows event logs
+sub data source: network share deletion
+source data object: user
+relationship: deleted
+destination data object: network share
+eventid: '5144'
+---
+att&ck data source: File monitoring
+sub data source: file access request
+source data object: user
+relationship: requested_a_handle
+destination data object: file
+eventid: '4656'
+---
+att&ck data source: Windows event logs
+sub data source: registry access request
+source data object: user
+relationship: requested_a_handle
+destination data object: win registry
+eventid: '4656'
+---
+att&ck data source: File monitoring
+sub data source: file deletion request
+source data object: user
+relationship: requested_a_handle
+destination data object: file
+eventid: '4656'
+---
+att&ck data source: Windows event logs
+sub data source: registry deletion request
+source data object: user
+relationship: requested_a_handle
+destination data object: win registry
+eventid: '4656'
+---
+att&ck data source: File monitoring
+sub data source: file access
+source data object: user
+relationship: accessed
+destination data object: file
+eventid: '4663'
+---
+att&ck data source: File monitoring
+sub data source: file deletion
+source data object: user
+relationship: deleted
+destination data object: file
+eventid: '4663'
+---
+att&ck data source: Windows event logs
+sub data source: symbolic link creation
+source data object: user
+relationship: created
+destination data object: symbolic link
+eventid: '4664'
+---
+att&ck data source: File monitoring
+sub data source: file permissions change
+source data object: user
+relationship: changed_permissions
+destination data object: file
+eventid: '4670'
+---
+att&ck data source: Windows event logs
+sub data source: scheduled task creation
+source data object: user
+relationship: created
+destination data object: scheduled task
+eventid: '4698'
+---
+att&ck data source: Windows event logs
+sub data source: scheduled task deletion
+source data object: user
+relationship: deleted
+destination data object: scheduled task
+eventid: '4699'
+---
+att&ck data source: Windows event logs
+sub data source: scheduled task enable
+source data object: user
+relationship: enabled
+destination data object: scheduled task
+eventid: '4700'
+---
+att&ck data source: Windows event logs
+sub data source: scheduled tast disable
+source data object: user
+relationship: disabled
+destination data object: scheduled task
+eventid: '4701'
+---
+att&ck data source: Windows event logs
+sub data source: scheduled task update
+source data object: user
+relationship: updated
+destination data object: scheduled task
+eventid: '4702'
+---
+att&ck data source: Windows event logs
+sub data source: win registry key access
+source data object: user
+relationship: accessed
+destination data object: win registry
+eventid: '4663'
+---
+att&ck data source: Windows event logs
+sub data source: win registry key deletion
+source data object: user
+relationship: deleted
+destination data object: win registry
+eventid: '4663'
+---
+att&ck data source: Windows event logs
+sub data source: win registry key permissions change
+source data object: user
+relationship: changed_permissions
+destination data object: win registry
+eventid: '4670'
+---
+att&ck data source: Windows event logs
+sub data source: win registry key value modification
+source data object: user
+relationship: modified
+destination data object: win registry
+eventid: '4657'
+---
+att&ck data source: Windows event logs
+sub data source: sam service object handle request
+source data object: user
+relationship: requested_a_handle
+destination data object: sam object
+eventid: '4661'
+---
+att&ck data source: Windows event logs
+sub data source: user account access addition
+source data object: user
+relationship: granted_access
+destination data object: user
+eventid: '4717'
+---
+att&ck data source: Windows event logs
+sub data source: user account access removal
+source data object: user
+relationship: removed_access
+destination data object: user
+eventid: '4718'
+---
+att&ck data source: Windows event logs
+sub data source: win service installation
+source data object: user
+relationship: installed
+destination data object: service
+eventid: '4697'
+---
+att&ck data source: Windows event logs, Authentication logs
+sub data source: NTLM Credentials Validation
+source data object: host
+relationship: authenticated
+destination data object: user
+eventid: '4776'
+---
+att&ck data source: Process use of network
+sub data source: process network service connection block
+source data object: host
+relationship: blocked_service_connection_to
+destination data object: process
+eventid: '5031'
+---
+att&ck data source: Process use of network
+sub data source: process network listener allow
+source data object: host
+relationship: permitted_listener_on
+destination data object: process
+eventid: '5154'
+---
+att&ck data source: Process use of network
+sub data source: process network listener block
+source data object: host
+relationship: blocked_listener_on
+destination data object: process
+eventid: '5155'
+---
+att&ck data source: Process use of network
+sub data source: process network connection allow
+source data object: host
+relationship: permitted_inbound_connection_on
+destination data object: process
+eventid: '5156'
+---
+att&ck data source: Process use of network
+sub data source: process network connection allow
+source data object: host
+relationship: permitted_outbound_connection_on
+destination data object: process
+eventid: '5156'
+---
+att&ck data source: Process use of network
+sub data source: process network connection block
+source data object: host
+relationship: blocked_inbound_connection_on
+destination data object: process
+eventid: '5157'
+---
+att&ck data source: Process use of network
+sub data source: process network connection block
+source data object: host
+relationship: blocked_outbound_connection_on
+destination data object: process
+eventid: '5157'
+---
+att&ck data source: Process use of network
+sub data source: process network local port bind allow
+source data object: host
+relationship: permitted_local_port_bind_on
+destination data object: process
+eventid: '5158'
+---
+att&ck data source: Process use of network
+sub data source: process network local port bind blocked
+source data object: host
+relationship: blocked_local_port_bind_on
+destination data object: process
+eventid: '5159'
+---
+att&ck data source: Process monitoring
+sub data source: process creation
+source data object: process
+relationship: created
+destination data object: process
+eventid: '4688'
+---
+att&ck data source: Process monitoring
+sub data source: process creation
+source data object: process
+relationship: created
+destination data object: process
+eventid: '1'
+---
+att&ck data source: Process monitoring
+sub data source: process termination
+source data object: process
+relationship: terminated
+destination data object: ''
+eventid: '4689'
+---
+att&ck data source: Process monitoring
+sub data source: process termination
+source data object: process
+relationship: terminated
+destination data object: ''
+eventid: '5'
+---
+att&ck data source: Process monitoring
+sub data source: process write to process
+source data object: process
+relationship: wrote_to
+destination data object: process
+eventid: '8'
+---
+att&ck data source: Process monitoring
+sub data source: process access
+source data object: process
+relationship: opened
+destination data object: process
+eventid: '10'
+---
+att&ck data source: Loaded DLLs
+sub data source: module load
+source data object: process
+relationship: loaded
+destination data object: module
+eventid: '7'
+---
+att&ck data source: File monitoring
+sub data source: file creation
+source data object: process
+relationship: created
+destination data object: file
+eventid: '11'
+---
+att&ck data source: File monitoring
+sub data source: file modification
+source data object: process
+relationship: modified
+destination data object: file
+eventid: '11'
+---
+att&ck data source: File monitoring
+sub data source: file download
+source data object: process
+relationship: downloaded
+destination data object: file
+eventid: '11'
+---
+att&ck data source: Windows Registry
+sub data source: win registry key creation
+source data object: process
+relationship: created
+destination data object: win registry
+eventid: '12'
+---
+att&ck data source: Windows Registry
+sub data source: win registry key deletion
+source data object: process
+relationship: deleted
+destination data object: win registry
+eventid: '12'
+---
+att&ck data source: Windows Registry
+sub data source: win registry key modification
+source data object: process
+relationship: modified
+destination data object: win registry
+eventid: '14'
+---
+att&ck data source: Windows Registry
+sub data source: win registry key modification
+source data object: process
+relationship: modified
+destination data object: win registry
+eventid: '13'
+---
+att&ck data source: Named Pipes
+sub data source: win pipe creation
+source data object: process
+relationship: created
+destination data object: pipe
+eventid: '17'
+---
+att&ck data source: Named Pipes
+sub data source: win pipe connection
+source data object: process
+relationship: connected_to
+destination data object: pipe
+eventid: '18'
+---
+att&ck data source: Process use of network
+sub data source: process network connection allow
+source data object: process
+relationship: connected_to
+destination data object: ip
+eventid: '3'
+---
+att&ck data source: Process use of network
+sub data source: process network connection allow
+source data object: process
+relationship: connected_from
+destination data object: ip
+eventid: '5156'
+---
+att&ck data source: Process use of network
+sub data source: process network connection allow
+source data object: process
+relationship: connected_to
+destination data object: ip
+eventid: '5156'
+---
+att&ck data source: Process use of network
+sub data source: process network local port bind allow
+source data object: process
+relationship: bound _to
+destination data object: port
+eventid: '5158'
+---
+att&ck data source: Windows event logs
+sub data source: win registry key value modification
+source data object: process
+relationship: modified
+destination data object: win registry
+eventid: '4657'
+---
+att&ck data source: Windows event logs
+sub data source: sensitive privileged service operation
+source data object: process
+relationship: called
+destination data object: privileged service
+eventid: '4673'

@@ -1,0 +1,1174 @@
+entity: http
+data fields:
+- standard name: http_request_header_names
+  type: string
+  description: List of any additional (or all) HTTP headers. Because a client can
+    use any HTTP header they want and there are already hundreds of (common HTTP headers)[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers]
+    it would be impossible to define a specfic field for each one.
+  sample value: '"X-Forwarded-For"'
+- standard name: http_response_header_names
+  type: string
+  description: List of any additional (or all) HTTP headers. Because a server can
+    use any HTTP header they want and there are already hundreds of (common HTTP headers)[https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers]
+    it would be impossible to define a specfic field for each one.
+  sample value: '"X-Forwarded-For"'
+---
+entity: ip
+data fields:
+- standard name: dst_ip_addr
+  type: ip
+  description: destination IP in a network connection
+  sample value: 8.8.8.8
+- standard name: dst_nat_ip_addr
+  type: ip
+  description: destination NAT IP in a network connection
+  sample value: 8.8.8.8
+- standard name: src_ip_addr
+  type: ip
+  description: source IP in a network connection
+  sample value: 192.168.1.2
+- standard name: src_nat_ip_addr
+  type: ip
+  description: source NAT IP in a network connection
+  sample value: 192.168.1.2
+- standard name: any_ip_addr
+  type: ip
+  description: Allows searching a single field for all IPs. All IP fields copied/duplicated
+    to a single field in an array.
+  sample value: 192.168.1.2
+---
+entity: process
+data fields:
+- standard name: process_guid
+  type: string
+  description: Process Guid of the main process that got spawned/created (child)
+  sample value: '{A98268C1-9C2E-5ACD-0000-0010396CAB00}'
+- standard name: process_id
+  type: integer
+  description: Process ID used by the operating system to identify the created process
+    (child)
+  sample value: '4756'
+- standard name: process_name
+  type: string
+  description: The name of the executable without full path related to the process
+    being spawned/created in the event. Considered also the child or source process
+  sample value: conhost.exe
+- standard name: process_path
+  type: string
+  description: The complete path and name of the executable related to the main process
+    in the event. Considered also the child or source process path
+  sample value: C:\Windows\System32\conhost.exe
+- standard name: process_command_line
+  type: string
+  description: Command arguments that were were executed by the main process in the
+    event (child process)
+  sample value: ??\C:\WINDOWS\system32\conhost.exe 0xffffffff -ForceV1
+- standard name: process_integrity_level
+  type: string
+  description: Integrity label assigned to a process
+  sample value: Medium
+- standard name: process_parent_guid
+  type: string
+  description: ProcessGUID of the process that spawned/created the main process (child)
+  sample value: '{A98268C1-9C2E-5ACD-0000-00100266AB00}'
+- standard name: process_parent_id
+  type: integer
+  description: Process ID of the process that spawned/created the main process (child)
+  sample value: '240'
+- standard name: process_parent_name
+  type: string
+  description: The name of the executable without full path related to the process
+    that spawned/created the main process (child)
+  sample value: cmd.exe
+- standard name: process_parent_path
+  type: string
+  description: The complete path and name of the executable related to the the process
+    that spawned/created the main process (child)
+  sample value: C:\Windows\System32\cmd.exe
+- standard name: process_parent_command_line
+  type: string
+  description: Command arguments that were passed to the executable related to the
+    parent process
+  sample value: C:\WINDOWS\system32\cmd.exe
+- standard name: target_process_guid
+  type: string
+  description: Process Guid of the target process
+  sample value: '{A98268C1-9C2E-5ACD-0000-00100266AB00}'
+- standard name: target_process_id
+  type: integer
+  description: Process ID used by the os to identify the target process
+  sample value: '240'
+- standard name: target_process_name
+  type: string
+  description: The name of the executable related to the target process
+  sample value: cmd.exe
+- standard name: target_process_path
+  type: string
+  description: The complete path and name of the executable associated with the target
+    process
+  sample value: C:\Windows\System32\cmd.exe
+- standard name: target_process_address
+  type: string
+  description: The memory address where the subprocess is injected
+  sample value: '0xFFFFBC6422DD9C20'
+- standard name: process_granted_access
+  type: string
+  description: granted access code requested/used to open a target process
+  sample value: '0x1000'
+- standard name: process_call_trace
+  type: string
+  description: Stack trace of where open process is called
+  sample value: C:\WINDOWS\SYSTEM32\ntdll.dll+a0344 | C:\WINDOWS\System32\KERNELBASE.dll+64794|
+    c:\windows\system32\lsm.dll+10e93| c:\windows\system32\lsm.dll+f9ea| C:\WINDOWS\System32\RPCRT4.dll+76d23|
+    C:\WINDOWS\System32\RPCRT4.dll+d9390| C:\WINDOWS\System32\RPCRT4.dll+a81c| C:\WINDOWS\System32\RPCRT4.dll+273b4|
+    C:\WINDOWS\System32\RPCRT4.dll+2654e| C:\WINDOWS\System32\RPCRT4.dll+26cfb| C:\WINDOWS\System32\RPCRT4.dll+3083f|
+    C:\WINDOWS\System32\RPCRT4.dll+313a6| C:\WINDOWS\System32\RPCRT4.dll+2d12e| C:\WINDOWS\System32\RPCRT4.dll+2e853|
+    C:\WINDOWS\System32\RPCRT4.dll+5cc68| C:\WINDOWS\SYSTEM32\ntdll.dll+365ce| C:\WINDOWS\SYSTEM32\ntdll.dll+34b46|
+    C:\WINDOWS\System32\KERNEL32.DLL+11fe4| C:\WINDOWS\SYSTEM32\ntdll.dll+6efc1
+---
+entity: target
+data fields:
+- standard name: target_process_guid
+  type: string
+  description: Process Guid of the target process
+  sample value: '{A98268C1-9C2E-5ACD-0000-00100266AB00}'
+- standard name: target_process_id
+  type: integer
+  description: Process ID used by the os to identify the target process
+  sample value: '240'
+- standard name: target_process_path
+  type: string
+  description: File path of the target process
+  sample value: C:\Windows\System32\cmd.exe
+- standard name: target_device
+  type: string
+  description: Target device
+  sample value: \Device\HarddiskVolume2
+- standard name: target_host_name
+  type: string
+  description: name of a computer or device (see example of the data dictionary for
+    Windows EventID:4741 for specific use case
+  sample value: WIN81$
+- standard name: target_process_name
+  type: string
+  description: name of the target process without its full path
+  sample value: MsMpEng.exe
+- standard name: target_user_name
+  type: string
+  description: the name of the account whose credentials were used
+  sample value: ladmin
+- standard name: target_user_domain
+  type: string
+  description: "subject\u2019s domain or computer name"
+  sample value: CONTOSO
+- standard name: target_user_logon_guid
+  type: string
+  description: "a GUID that can help you correlate this event with another event that\
+    \ can contain the same Logon GUID, \u201C4769(S, F): A Kerberos service ticket\
+    \ was requested event on a domain controller."
+  sample value: '{0887F1E4-39EA-D53C-804F-31D568A06274}'
+- standard name: target_server_name
+  type: string
+  description: "the name of the server on which the new process was run. Has \u201C\
+    localhost\u201D value if the process was run locally."
+  sample value: localhost
+- standard name: target_info
+  type: string
+  description: there is no detailed information about this field in this document.
+  sample value: localhost
+- standard name: target_user_sid
+  type: string
+  description: SID of account that performed the logon.
+  sample value: S-1-5-21-3457937927-2839227994-823803824-500
+- standard name: target_user_logon_id
+  type: integer
+  description: "hexadecimal value that can help you correlate this event with recent\
+    \ events that might contain the same Logon ID, for example, \u201C4624: An account\
+    \ was successfully logged on.\u201D"
+  sample value: '0x139faf'
+- standard name: target_user_sid_list
+  type: string
+  description: the list of special group SIDs, which New Logon\Security ID is a member
+    of.
+  sample value: '{S-1-5-21-3457937927-2839227994-823803824-512}'
+---
+entity: source_nat
+data fields:
+- standard name: src_nat_ip_addr
+  type: ip
+  description: the IP value that the original Source MAC was translated into during
+    NAT
+  sample value: 8.8.8.8
+- standard name: src_nat_mac
+  type: mac
+  description: the MAC value that the original Source MAC was translated into during
+    NAT
+  sample value: a9:68:82:28:c4:6d
+- standard name: src_nat_port
+  type: integer
+  description: the port value that the original Source port was translated into during
+    NAT
+  sample value: '43572'
+- standard name: src_nat_port_name
+  type: string
+  description: Source NAT port name. This is usually determined by IANA common port
+    assignment. Therefore, this means its a guess and NOT the actual the application
+    used
+  sample value: netbios-dgm
+---
+entity: group
+data fields:
+- standard name: group_name
+  type: string
+  description: the name of a security group, or a distribution group that is created,
+    changed, or deleted
+  sample value: AccountOperators
+- standard name: group_domain
+  type: string
+  description: domain or computer name of the group
+  sample value: CONTOSO
+- standard name: group_sid
+  type: string
+  description: SID of a group
+  sample value: S-1-5-21-3457937927-2839227994-823803824-6605
+- standard name: group_sam_name
+  type: string
+  description: 'this is a name of the group used to support clients and servers from
+    previous versions of Windows (pre-Windows 2000 logon name). The value of sAMAccountName
+    attribute of new group object. For example: ServiceDesk. For local groups it is
+    simply a name of new group'
+  sample value: AccountOperators
+- standard name: group_sid_history
+  type: string
+  description: "contains previous SIDs used for the object if the object was moved\
+    \ from another domain. Whenever an object is moved from one domain to another,\
+    \ a new SID is created and becomes the objectSID. The previous SID is added to\
+    \ the sIDHistory property. This parameter contains the value of sIDHistory attribute\
+    \ of a group object. This parameter might not be captured in the event, and in\
+    \ that case appears as \u201C-\u201D. For local groups it is not applicable and\
+    \ always has \u201C-\u201C value."
+  sample value: '-'
+---
+entity: network
+data fields:
+- standard name: network_bytes
+  type: long
+  description: Total bytes for the session. If this field does not exist in the log
+    source, then its possible in your ETL pipeline to combine the source and destination
+    bytes
+  sample value: '102034'
+- standard name: fingerprint_network_community_id
+  type: string
+  description: Network community ID as outlined by the standard from https://github.com/corelight/community-id-spec.
+    Standardized hashing of network tuple. The combination, most commonly, of Source
+    IP, Source Port, Destination IP, Destination Port, and IP Protocol allows pivoting
+    between multiple log types
+  sample value: 1:EeVyZ07VGj1n0rld+xCLFdM+u8M=
+- standard name: network_initiated
+  type: boolean
+  description: 'Whether the session was initiated or received. Most commonly used
+    in relation to an endpoint/device. False = the endpoint did not initiate the session
+    (ie: was scanned or RDP connection made to it)'
+  sample value: 'True'
+- standard name: network_ip_bytes
+  type: long
+  description: Total IP bytes, according to ip headers, for the session. If this field
+    does not exist in the log source, then its possible in your ETL pipeline to combine
+    the source and destination IP bytes
+  sample value: '14564'
+- standard name: network_missed_bytes
+  type: long
+  description: bytes that a network sensor or other system/application may have missed
+  sample value: '5'
+- standard name: network_packets
+  type: long
+  description: Total packets for the session. If this field does not exist in the
+    log source, then its possible in your ETL pipeline to combine the source and destination
+    packets
+  sample value: '143'
+- standard name: network_application
+  type: string
+  description: 'Layer 7 (application) in the OSI model. Ex: HTTP,SMB,FTP,SSH, etc'
+  sample value: HTTP
+- standard name: network_protocol
+  type: string
+  description: 'Transport layer in the OSI model. Also known as, IP Protocol. Ex:
+    TCP,UDP,ICMP,ICMP-v6, etc. Convert to lowercase'
+  sample value: tcp
+---
+entity: url
+data fields:
+- standard name: url_original
+  type: string
+  description: The entirety of the URL combined together and or the URL in the truest
+    form from the log source. Some log sources will already parse out portions of
+    the URL into their respective fields. Other logs will even parse out the portions
+    of the URL into their respective field but also include the "original" URL. Always
+    try to include this field, because HTTP/URLs never truly have to conform to any
+    RFC/implementation and thus any parsing/logging implementation could have any
+    number of assumptions/mistakes - therefore it is best to keep a original value
+  sample value: ftp://BigwheelPassword:BigwheelBobUser@google.com:8088/common/Current/client/search/greatsearch.php?hash=215696fc36392ca70f89228b98060afb%20processname=example.exe#gid=l1k4h
+- standard name: url_category
+  type: string
+  description: 'The defined grouping of a URL (or could be just based on the domain
+    in the URL) related to what it is (ie: adult, news, advertising, parked domains,
+    etc)'
+  sample value: Search Engines
+- standard name: url_host_name
+  type: string
+  description: The domain/host/hostname of the URL. This could be an IP address or
+    any variation of a value but is more than likely a domain/hostname
+  sample value: google.com
+- standard name: url_extension
+  type: string
+  description: The extension (.dll, .php, zip, .msi, .txt, etc) without the "."
+  sample value: exe
+- standard name: url_fragment
+  type: string
+  description: The portion of the URL after the last "#", this is defined in RFC-3986.
+    This is also referred to as the "hash" in some implementations. This value does
+    not always exist
+  sample value: gid=l1k4h
+- standard name: url_path
+  type: string
+  description: Everything beginning with and after the first "/". This portion should
+    usually exist in the log source / URL.. Even if the path is just "/". Also, even
+    if the url_query or url_fragment have not been parsed yet then you still include
+    them in this value
+  sample value: /common/Current/client/search/greatsearch.php?hash=215696fc36392ca70f89228b98060afb%20processname=example.exe
+- standard name: url_port
+  type: integer
+  description: The port in the URL. This is not to be confused with dst_port. In your
+    ETL pipeline you should check if the value derived from the URL is actually an
+    integer (unless properly verified in the data source)... because as mentioned
+    throughout, URLs can be manipulated/mis-implemented in many different ways
+  sample value: '8088'
+- standard name: url_query
+  type: string
+  description: The portion of the URL beginning after the last "?" but not including
+    the url fragment if it exists. This value does not always exist.
+  sample value: hash=215696fc36392ca70f89228b98060afb%20processname=example.exe
+- standard name: url_query_names
+  type: string
+  description: 'The keys/fields derived from the url_query. Due to the limitless variations
+    of implementations of a URL, providing a nested object of key/values is not recommended.
+    Whether an attacker is injecting data into a URL or an incorrect implementation
+    or malicious implementation - it''s possible you could have keys/fields of values
+    of anything you can imagine (ie: "%*%)%*#Nf..$2f>hr..n fa.fa s\\\\\"\\jhrwq":
+    "somevalue"'
+  sample value: '[ "215696fc36392ca70f89228b98060afb", "example.exe" ]'
+- standard name: url_query_values
+  type: string
+  description: 'The values derived from the url_query. Due to the limitless variations
+    of implementations of a URL, providing a nested object of key/values is not recommended.
+    Whether an attacker is injecting data into a URL or an incorrect implementation
+    or malicious implementation - it''s possible you could have keys/fields of values
+    of anything you can imagine (ie: "%*%)%*#Nf..$2f>hr..n fa.fa s\\\\\"\\jhrwq":
+    "somevalue"'
+  sample value: '[ "hash" , "processname" ]'
+- standard name: url_scheme
+  type: string
+  description: 'Defines the network location (ie: smtp, ftp, smb, ldap, etc). This
+    portion may not exist in many log sources. The is usually the value that comes
+    before the first "://". This is also referred to as URN/origin'
+  sample value: ftp
+- standard name: url_user_password
+  type: string
+  description: The password defined in the URL. This is meant to be distinguished
+    from something such as the value in the Authorization header in an HTTP request
+    (or even the Proxy Authentication HTTP header)
+  sample value: BigwheelPassword
+- standard name: url_user_name
+  type: string
+  description: The username defined in the URL. This is meant to be distinguished
+    from something such as the value in the Authorization header in an HTTP request
+    (or even the Proxy Authentication HTTP header). This value should be copied to
+    any_user
+  sample value: BigwheelBobUser
+---
+entity: tls
+data fields:
+- standard name: FieldNamePlaceholderTODO:REPLACEME
+  type: ValuePlaceHolder
+  description: DescriptionPlaceHolder
+  sample value: '``'
+---
+entity: hash
+data fields:
+- standard name: hash_md5
+  type: string
+  description: MD5 hash of the image/binary/file
+  sample value: 6A255BEBF3DBCD13585538ED47DBAFD7
+- standard name: hash_sha1
+  type: string
+  description: SHA1 hash of the image/binary/file
+  sample value: B0BF5AC2E81BBF597FAD5F349FEEB32CAC449FA2
+- standard name: hash_sha256
+  type: string
+  description: SHA256 hash of the image/binary/file
+  sample value: 4668BB2223FFB983A5F1273B9E3D9FA2C5CE4A0F1FB18CA5C1B285762020073C
+- standard name: hash_imphash
+  type: string
+  description: IMPHASH hash of the image/binary/file
+  sample value: 2505BD03D7BD285E50CE89CEC02B333B
+---
+entity: file
+data fields:
+- standard name: file_name
+  type: string
+  description: name of a file without its full path
+  sample value: a.exe
+- standard name: file_path
+  type: string
+  description: full path of a file including the name of the file
+  sample value: C:\users\wardog\z.exe
+- standard name: file_extension
+  type: string
+  description: The file extension of a file (.txt, .exe, etc)
+  sample value: zip
+- standard name: file_mime_type
+  type: string
+  description: Specifies the MIME type name specified for a file
+  sample value: application/msword
+- standard name: file_size
+  type: string
+  description: Specifies the size of a file, in bytes
+  sample value: '45'
+- standard name: file_system_block_size
+  type: integer
+  description: Block size of filesystem
+  sample value: ''
+- standard name: file_version
+  type: string
+  description: Version of the image loaded
+  sample value: 10.0.16299.15 (WinBuild.160101.0800)
+- standard name: file_description
+  type: string
+  description: Description of a file
+  sample value: Console Window Host
+- standard name: file_product
+  type: string
+  description: The file's product name
+  sample value: "Microsoft\xAE Windows\xAE Operating System"
+- standard name: file_company
+  type: string
+  description: Company name a file belongs to
+  sample value: Microsoft Corporation
+- standard name: file_directory
+  type: string
+  description: Directory of file(s). It does not include the file name
+  sample value: C:\users\wardog\
+- standard name: file_inode
+  type: integer
+  description: Filesystem inode number
+  sample value: ''
+- standard name: file_hard_links
+  type: integer
+  description: Number of hard links
+  sample value: '3'
+- standard name: file_symlink
+  type: integer
+  description: 1 if the path is a symlink, otherwise 0
+  sample value: '0'
+- standard name: file_timestamp_creation
+  type: integer
+  description: The file's current creation Timestamp on the disk
+  sample value: '2016-11-25 18:21:47'
+- standard name: file_timestamp_previous_creation
+  type: integer
+  description: The file's previous creation timestamp
+  sample value: '2017-07-30 23:26:47'
+---
+entity: destination_nat
+data fields:
+- standard name: dst_nat_ip_addr
+  type: ip
+  description: the IP value that the original Destination MAC was translated into
+    during NAT
+  sample value: 8.8.8.8
+- standard name: dst_nat_mac
+  type: mac
+  description: the MAC value that the original Destination MAC was translated into
+    during NAT
+  sample value: a9:68:82:28:c4:6d
+- standard name: dst_nat_port
+  type: integer
+  description: the port value that the original Destination port was translated into
+    during NAT
+  sample value: '138'
+- standard name: dst_nat_port_name
+  type: string
+  description: Destination NAT port name. This is usually determined by IANA common
+    port assignment. Therefore, this means its a guess and NOT the actual the application
+    used
+  sample value: netbios-dgm
+---
+entity: logon
+data fields:
+- standard name: user_logon_id
+  type: integer
+  description: hexadecimal value that can help you correlate this event with recent
+    events that might contain the same Logon ID
+  sample value: '0x8dcdc'
+- standard name: logon_type
+  type: integer
+  description: the type of logon which was performed
+  sample value: '2'
+- standard name: logon_process_name
+  type: string
+  description: "The name of the trusted logon process that was used for the logon.\
+    \ See event \u201C4611: A trusted logon process has been registered with the Local\
+    \ Security Authority\u201D description for more information."
+  sample value: User32
+- standard name: logon_authentication_package_name
+  type: string
+  description: "The name of the authentication package which was used for the logon\
+    \ authentication process. Default packages loaded on LSA startup are located in\
+    \ \u201CHKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\OSConfig\u201D registry\
+    \ key. Other packages can be loaded at runtime. When a new package is loaded a\
+    \ \u201C4610: An authentication package has been loaded by the Local Security\
+    \ Authority\u201D (typically for NTLM) or \u201C4622: A security package has been\
+    \ loaded by the Local Security Authority\u201D (typically for Kerberos) event\
+    \ is logged to indicate that a new package has been loaded along with the package\
+    \ name."
+  sample value: Negotiate
+- standard name: user_logon_guid
+  type: string
+  description: "a GUID that can help you correlate this event with another event that\
+    \ can contain the same Logon GUID, \u201C4769(S, F): A Kerberos service ticket\
+    \ was requested event on a domain controller. It also can be used for correlation\
+    \ between a 4624 event and several other events (on the same computer) that can\
+    \ contain the same Logon GUID, \u201C4648(S): A logon was attempted using explicit\
+    \ credentials\u201D and \u201C4964(S): Special groups have been assigned to a\
+    \ new logon.\u201D"
+  sample value: '{00000000-0000-0000-0000-000000000000}'
+- standard name: logon_transmitted_services
+  type: string
+  description: "the list of transmitted services. Transmitted services are populated\
+    \ if the logon was a result of a S4U (Service For User) logon process. S4U is\
+    \ a Microsoft extension to the Kerberos Protocol to allow an application service\
+    \ to obtain a Kerberos service ticket on behalf of a user \u2013 most commonly\
+    \ done by a front-end website to access an internal resource on behalf of a user."
+  sample value: '-'
+- standard name: logon_authentication_lan_package_name
+  type: string
+  description: 'The name of the LAN Manager sub-package (NTLM-family protocol name)
+    that was used during logon. Possible values are: NTLM V1, NTLM V2, LM. Only populated
+    if Authentication Package = NTLM.'
+  sample value: '-'
+- standard name: logon_key_length
+  type: integer
+  description: "the length of NTLM Session Security key. Typically it has 128 bit\
+    \ or 56 bit length. This parameter is always 0 if \u201CAuthentication Package\u201D\
+    \ = \u201CKerberos\u201D, because it is not applicable for Kerberos protocol.\
+    \ This field will also have \u201C0\u201D value if Kerberos was negotiated using\
+    \ Negotiate authentication package."
+  sample value: '0'
+- standard name: logon_impersonation_level
+  type: string
+  description: Impersonation level
+  sample value: '%%1833'
+- standard name: logon_restricted_admin_mode
+  type: string
+  description: Only populated for RemoteInteractive logon type sessions. This is a
+    Yes/No flag indicating if the credentials provided were passed using Restricted
+    Admin mode. Restricted Admin mode was added in Win8.1/2012R2 but this flag was
+    added to the event in Win10. If not a RemoteInteractive logon, then this will
+    be "-" string.
+  sample value: '-'
+- standard name: logon_virtual_account
+  type: string
+  description: "a \u201CYes\u201D or \u201CNo\u201D flag, which indicates if the account\
+    \ is a virtual account (e.g., \"Managed Service Account\"), which was introduced\
+    \ in Windows 7 and Windows Server 2008 R2 to provide the ability to identify the\
+    \ account that a given Service uses, instead of just using \"NetworkService\"."
+  sample value: '%%1843'
+- standard name: user_linked_logon_id
+  type: integer
+  description: "A hexadecimal value of the paired logon session. If there is no other\
+    \ logon session associated with this logon session, then the value is \u201C0x0\u201D\
+    ."
+  sample value: '0x0'
+- standard name: logon_elevated_token
+  type: string
+  description: "a \u201CYes\u201D or \u201CNo\u201D flag. If \u201CYes\u201D then\
+    \ the session this event represents is elevated and has administrator privileges."
+  sample value: '%%1842'
+- standard name: logon_user_claims
+  type: string
+  description: list of user claims for new logon session. This field contains user
+    claims if user account was logged in and device claims if computer account was
+    logged in
+  sample value: 'ad://ext/cn:88d2b96fdb2b4c49 <%%1818> : "dadmin" ad://ext/Department:88d16a8edaa8c66b
+    <%%1818> : "IT"'
+- standard name: logon_device_claims
+  type: string
+  description: list of device claims for new logon session
+  sample value: '-'
+- standard name: target_user_logon_guid
+  type: string
+  description: "a GUID that can help you correlate this event with another event that\
+    \ can contain the same Logon GUID, \u201C4769(S, F): A Kerberos service ticket\
+    \ was requested event on a domain controller."
+  sample value: '{0887F1E4-39EA-D53C-804F-31D568A06274}'
+- standard name: target_user_logon_id
+  type: integer
+  description: "hexadecimal value that can help you correlate this event with recent\
+    \ events that might contain the same Logon ID, for example, \u201C4624: An account\
+    \ was successfully logged on.\u201D"
+  sample value: '0x139faf'
+---
+entity: pipe
+data fields:
+- standard name: pipe_name
+  type: string
+  description: name of pipe created or connected
+  sample value: \srvsvc
+- standard name: pipe_instances
+  type: integer
+  description: Number of instances of the named pipe
+  sample value: ''
+- standard name: pipe_max_instances
+  type: integer
+  description: The maximum number of instances creatable for this pipe
+  sample value: ''
+- standard name: pipe_flags
+  type: string
+  description: The flags indicating whether this pipe connection is a server or client
+    end, and if the pipe for sending messages or bytes
+  sample value: ''
+---
+entity: source
+data fields:
+- standard name: src_bytes
+  type: integer
+  description: network bytes sent by the src_ip_addr
+  sample value: '100'
+- standard name: src_host_name
+  type: string
+  description: Source/Subject host name
+  sample value: WKHR001
+- standard name: src_ip_addr
+  type: ip
+  description: Source IP address
+  sample value: 8.8.8.8
+- standard name: src_ip_bytes
+  type: integer
+  description: network IP (header) bytes sent by the src_ip_addr
+  sample value: '100'
+- standard name: src_mac
+  type: mac
+  description: Source MAC address
+  sample value: a9:68:82:28:c4:6d
+- standard name: src_mime_type
+  type: string
+  description: 'Source MIME type as seen in (layer 7) application layer details or
+    as defined by a application scanner such as an anti-virus/EDR. For HTTP this is
+    usually from the client''s "Content-Type" header. For some examples of MIME types,
+    check out: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types'
+  sample value: application/pdf
+- standard name: src_packets
+  type: integer
+  description: network packets sent by the src_ip_addr
+  sample value: '5'
+- standard name: src_port
+  type: integer
+  description: Source port number
+  sample value: '41572'
+- standard name: src_port_name
+  type: string
+  description: Source port name. This is usually determined by IANA common port assignment.
+    Therefore, this means its a guess and NOT the actual the application used
+  sample value: netbios-dgm
+---
+entity: meta
+data fields:
+- standard name: category
+  type: string
+  description: 'Description to define a grouping of a value. Commonly used for URL/domain
+    category (ie: Adult, Abuse, Parked, RFC-1918, etc)'
+  sample value: '``'
+- standard name: ttp
+  type: string
+  description: Tactic, technique, and procedure
+  sample value: '``'
+- standard name: alert
+  type: string
+  description: Data describing an alert
+  sample value: '``'
+- standard name: geo location
+  type: geo_point
+  description: Geo longitude and latitude point of a field
+  sample value: '``'
+- standard name: AS Number
+  type: integer
+  description: Autonomous System (AS) number (BGP AS Number)
+  sample value: '``'
+- standard name: AS Org
+  type: string
+  description: Autonomous System (AS) organization (BGP AS Name)
+  sample value: '``'
+---
+entity: alert
+data fields:
+- standard name: alert_id
+  type: integer
+  description: Alert ids might repeat across different data sources
+  sample value: '1234'
+- standard name: alert_signature
+  type: string
+  description: The name or title of an alert
+  sample value: EvilActor:CnCv2
+- standard name: alert_message
+  type: string
+  description: The message provided by the alert
+  sample value: A file exhibiting behaviour of the evilactor command and control framework
+    2 was detected.
+- standard name: alert_description
+  type: string
+  description: The expanded description of the event
+  sample value: '...'
+- standard name: alert_severity
+  type: string
+  description: The severity of an alert
+  sample value: Priority 5
+- standard name: alert_category
+  type: string
+  description: The category of an alert
+  sample value: Malware
+- standard name: alert_version
+  type: string
+  description: A signature or alert version
+  sample value: '1.2'
+---
+entity: mac
+data fields:
+- standard name: mac_address
+  type: mac
+  description: MAC address of the endpoint where the log was created
+  sample value: 00:11:22:33:44:55
+- standard name: dst_mac
+  type: ip
+  description: destination MAC in a network connection
+  sample value: 00:11:22:33:44:55
+- standard name: dst_nat_mac
+  type: ip
+  description: destination NAT MAC in a network connection
+  sample value: 00:11:22:33:44:55
+- standard name: src_mac
+  type: ip
+  description: source MAC in a network connection
+  sample value: 00:11:22:33:44:55
+- standard name: src_nat_mac
+  type: ip
+  description: source NAT MAC in a network connection
+  sample value: 00:11:22:33:44:55
+---
+entity: software
+data fields:
+- standard name: FieldNamePlaceholderTODO:REPLACEME
+  type: ValuePlaceHolder
+  description: DescriptionPlaceHolder
+  sample value: '``'
+---
+entity: module
+data fields:
+- standard name: module_loaded
+  type: string
+  description: full path of a module loaded
+  sample value: C:\Windows\System32\msvcrt.dll
+- standard name: module_is_signed
+  type: boolean
+  description: is the module loaded signed?
+  sample value: 'TRUE'
+- standard name: module_signature
+  type: string
+  description: The signer
+  sample value: Microsoft Corporation
+- standard name: module_signature_status
+  type: string
+  description: status of the signature
+  sample value: Valid
+---
+entity: any
+data fields:
+- standard name: '*host_name'
+  type: search
+  description: Allows searching a single field for all domains.
+  sample value: N/A
+- standard name: any_ip_geo.asn
+  type: string
+  description: Allows searching a single field for all BGP AS Numbers. All AS number
+    fields copied/duplicated to a single field as an array.
+  sample value: '``'
+- standard name: any_ip_geo.as_org
+  type: string
+  description: Allows searching a single field for all BGP AS Organization Names.
+    All AS name fields copied/duplicated to a single field as an array.
+  sample value: '``'
+- standard name: any_hash
+  type: string
+  description: Allows searching a single field for all hashes. All hash fields copied/duplicated
+    to a single field as an array.
+  sample value: '``'
+- standard name: any_ip_addr
+  type: string
+  description: Allows searching a single field for all IPs. All IP fields copied/duplicated
+    to a single field as an array.
+  sample value: '``'
+- standard name: any_log_id
+  type: string
+  description: Allows searching a single field for all log IDs. All log ID fields
+    copied/duplicated to a single field as an array.
+  sample value: '``'
+- standard name: any_mac_addr
+  type: string
+  description: Allows searching a single field for all MAC addresses. All MAC address
+    fields copied/duplicated to a single field as an array.
+  sample value: '``'
+- standard name: any_user
+  type: string
+  description: Allows searching a single field for all users. All user fields copied/duplicated
+    to a single field as an array.
+  sample value: '``'
+- standard name: any_vlan_id
+  type: integer
+  description: Allows searching a single field for all VLAN IDs. All VLAN ID fields
+    copied/duplicated to a single field as an array.
+  sample value: '``'
+---
+entity: destination
+data fields:
+- standard name: dst_bytes
+  type: integer
+  description: network bytes sent by the dst_ip_addr
+  sample value: '100'
+- standard name: dst_host_name
+  type: string
+  description: The destination server, host, hostname, domain, or domain name. Some
+    examples, would include the TLS server name, HTTP Host, DNS Query Name, etc. For
+    information on how to define and use this field refer to the documentation here
+  sample value: www.google.com
+- standard name: dst_domain
+  type: string
+  description: If there is a clear distinction of the domain VS hostname VS FQDN this
+    is the domain field. More often than not this should NOT be used and should be
+    defined in the Target Schema, Host Schema, or User Schema. However, you may follow
+    the recommendations here if there is a clear example for this
+  sample value: bigwheel.corporation.local
+- standard name: dst_fqdn
+  type: string
+  description: If there is a clear distinction of the domain VS hostname VS FQDN this
+    is the FQDN field. More often than not this should NOT be used and should be defined
+    in the Target Schema, Host Schema, or User Schema. However, you may follow the
+    recommendations here if there is a clear example for this
+  sample value: bob-berto-pc.bigwheel.corporation.local
+- standard name: dst_ip_addr
+  type: ip
+  description: Destination IP address
+  sample value: 8.8.8.8
+- standard name: dst_ip_bytes
+  type: integer
+  description: network IP (header) bytes sent by the dst_ip_addr
+  sample value: '104'
+- standard name: dst_mac
+  type: mac
+  description: Destination MAC address
+  sample value: a9:68:82:28:c4:6d
+- standard name: dst_mime_type
+  type: string
+  description: 'MIME type as seen in (layer 7) application layer details or as defined
+    by a application scanner such as an anti-virus/EDR. For HTTP this is usually from
+    the server''s "Content-Type" header. For some examples of MIME types, check out:
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types'
+  sample value: application/pdf
+- standard name: dst_packets
+  type: integer
+  description: Network packets sent by the dst_ip_addr
+  sample value: '5'
+- standard name: dst_port
+  type: integer
+  description: Destination port number
+  sample value: '138'
+- standard name: dst_port_name
+  type: string
+  description: Destination port name. This is usually determined by IANA common port
+    assignment. Therefore, this means its a guess and NOT the actual the application
+    used
+  sample value: netbios-dgm
+---
+entity: dns
+data fields:
+- standard name: FieldNamePlaceholderTODO:REPLACEME
+  type: ValuePlaceHolder
+  description: DescriptionPlaceHolder
+  sample value: '``'
+---
+entity: port
+data fields:
+- standard name: src_port
+  type: integer
+  description: Source port number used in a network connection
+  sample value: '138'
+- standard name: src_port_name
+  type: string
+  description: Source port name used in a network connection. This is usually determined
+    by IANA common port assignment. Therefore, this means its a guess and NOT actually
+    what the application/ is what the actually
+  sample value: netbios-dgm
+- standard name: src_nat_port
+  type: integer
+  description: Source NAT port number used in a network connection
+  sample value: '138'
+- standard name: src_nat_port_name
+  type: string
+  description: Source NAT port name used in a network connection. This is usually
+    determined by IANA common port assignment. Therefore, this means its a guess and
+    NOT actually what the application/ is what the actually
+  sample value: netbios-dgm
+- standard name: dst_port
+  type: integer
+  description: Destination port number used in a network connection
+  sample value: '138'
+- standard name: dst_port_name
+  type: string
+  description: Destination port name used in a network connection
+  sample value: netbios-dgm
+- standard name: dst_nat_port
+  type: integer
+  description: Destination NAT port number used in a network connection
+  sample value: '138'
+- standard name: dst_nat_port_name
+  type: string
+  description: Destination NAT port name used in a network connection
+  sample value: netbios-dgm
+---
+entity: event
+data fields:
+- standard name: event_id
+  type: integer
+  description: event unique identifier for specific event logs. Event ids might repeat
+    across different data sources
+  sample value: '4688'
+- standard name: event_status
+  type: integer
+  description: It is usally an integer (Status code) and defines the status of a particular
+    event
+  sample value: '0'
+- standard name: event_type
+  type: string
+  description: A description of the event, which can help with categorization.
+  sample value: Login
+- standard name: event_creation_time
+  type: date
+  description: original time when event/log was created. This is different from the
+    Timestamp field name which is created automatically by the producer and/or the
+    consumer
+  sample value: 4/11/2018 5:46:18
+---
+entity: user_agent
+data fields: []
+---
+entity: user
+data fields:
+- standard name: user_name
+  type: string
+  description: Name of the account that performed the main action in the event. (i.e.
+    user_name authenticated to the box x or user_name spawned a process)
+  sample value: DESKTOP-WARDOG\wardog
+- standard name: user_logon_guid
+  type: string
+  description: Logon GUID of the account that performed the main action in the event.
+    Value that can help you correlate this event with others that contain the same
+    Logon GUID (Sysmon Events)
+  sample value: '{A98268C1-95F2-5ACD-0000-002019620F00}'
+- standard name: user_logon_id
+  type: integer
+  description: Login ID of the account the performed the main action in the event.
+    Value that can help you correlate this event with others that contain the same
+    Logon ID
+  sample value: '0xf6219'
+- standard name: user_session_id
+  type: integer
+  description: ID of the session the account tha performed the main action in the
+    event belongs to
+  sample value: '1'
+- standard name: user_reporter_sid
+  type: string
+  description: SID of account that reported information about the main event
+  sample value: S-1-5-18
+- standard name: user_reporter_name
+  type: string
+  description: the name of the account that reported information about the main event
+  sample value: WIN-GG82ULGC9GO$
+- standard name: user_reporter_domain
+  type: string
+  description: "subject\u2019s domain or computer name of the account that reported\
+    \ information about the main event"
+  sample value: WORKGROUP
+- standard name: user_reporter_id
+  type: integer
+  description: hexadecimal value that can help you correlate an event with recent
+    events that might contain the same Logon ID for the account that reported information
+    about the main event
+  sample value: '0x3e7'
+- standard name: user_sid
+  type: string
+  description: SID of the account that performed the main action in the event
+  sample value: S-1-5-21-1377283216-344919071-3415362939-500
+- standard name: user_domain
+  type: string
+  description: "subject\u2019s domain or computer name of the account that performed\
+    \ the main action in the event"
+  sample value: WIN-GG82ULGC9GO
+- standard name: user_network_account_name
+  type: string
+  description: User name that will be used for outbound (network) connections. Valid
+    only for NewCredentials logon type. If not NewCredentials logon, then this will
+    be a "-" string.
+  sample value: '-'
+- standard name: user_network_account_domain
+  type: string
+  description: Domain for the user that will be used for outbound (network) connections.
+    Valid only for NewCredentials logon type. If not NewCredentials logon, then this
+    will be a "-" string.
+  sample value: '-'
+- standard name: user_linked_logon_id
+  type: integer
+  description: "A hexadecimal value of the paired logon session. If there is no other\
+    \ logon session associated with this logon session, then the value is \u201C0x0\u201D\
+    ."
+  sample value: '0x0'
+- standard name: logon_user_claims
+  type: string
+  description: list of user claims for new logon session. This field contains user
+    claims if user account was logged in and device claims if computer account was
+    logged in
+  sample value: 'ad://ext/cn:88d2b96fdb2b4c49 <%%1818> : "dadmin" ad://ext/Department:88d16a8edaa8c66b
+    <%%1818> : "IT"'
+- standard name: target_user_name
+  type: string
+  description: the name of the account whose credentials were used or whom is being
+    targeted by the main user in the event
+  sample value: ladmin
+- standard name: target_user_domain
+  type: string
+  description: "subject\u2019s domain or computer name for the account whose credentials\
+    \ were used or whom is being targeted by the main user in the event"
+  sample value: CONTOSO
+- standard name: target_user_logon_guid
+  type: string
+  description: a GUID that can help you correlate an event with another event that
+    can contain the same Logon GUID of the account whose credentials were used or
+    whom is being targeted by the main user in the event
+  sample value: '{0887F1E4-39EA-D53C-804F-31D568A06274}'
+- standard name: target_user_sid
+  type: string
+  description: SID of the account whose credentials were used or whom is being targeted
+    by the main user in the event
+  sample value: S-1-5-21-3457937927-2839227994-823803824-500
+- standard name: target_user_logon_id
+  type: integer
+  description: hexadecimal value that can help you correlate an event with recent
+    events that might contain the same Logon ID of the account whose credentials were
+    used or whom is being targeted by the main user in the event
+  sample value: '0x139faf'
+- standard name: target_user_sid_list
+  type: string
+  description: the list of special group SIDs, which New Logon\Security ID is a member
+    of.
+  sample value: '{S-1-5-21-3457937927-2839227994-823803824-512}'
+- standard name: user_security_package
+  type: string
+  description: the name of Security Package which was used by the account that performed
+    the main action in the event. Always CREDSSP for this event.
+  sample value: CREDSSP
+- standard name: user_upn
+  type: string
+  description: UPN of the account for which delegation was requested.
+  sample value: dadmin@contoso
+- standard name: user_cred_type
+  type: string
+  description: types of credentials which were presented for delegation
+  sample value: '%%8098'
+- standard name: user_identity
+  type: string
+  description: User Principal Name (UPN) or another type of account identifier for
+    which 802.1x authentication request was made.
+  sample value: host/XXXXXXXX.redmond.corp.microsoft.com
+---
+entity: flow
+data fields: []
+---
+entity: host
+data fields:
+- standard name: host_name
+  type: string
+  description: Name of the endpoint where the log was created. Usually without the
+    FQDN
+  sample value: WkHR001
+- standard name: host_domain
+  type: string
+  description: Name of the domain for the host where the log was created
+  sample value: hunt.wardog.com
+- standard name: host_fqdn
+  type: string
+  description: The fully qualified domain name of the host where the log was created
+  sample value: WKHR001.hunt.wardog.com
+- standard name: dst_host_name
+  type: string
+  description: Destination host name in a network connection
+  sample value: WKHR001
+- standard name: src_host_name
+  type: string
+  description: name of the endpoint from which an event initiated in a network connection
+  sample value: WIN-GG82ULGC9GO
+- standard name: host_local_mac
+  type: string
+  description: "local interface\u2019s MAC-address"
+  sample value: 18:64:72:F3:33:91
+- standard name: host_peer_mac
+  type: string
+  description: "peer\u2019s (typically \u2013 access point) MAC-address"
+  sample value: 02:1A:C5:14:59:C9
+- standard name: host_interface_guid
+  type: string
+  description: GUID of the network interface which was used for authentication request.
+  sample value: '{2BB33827-6BB6-48DB-8DE6-DB9E0B9F9C9B}'
+- standard name: host_interface_name
+  type: string
+  description: "the name (description) of the network interface that was used for\
+    \ authentication request. You can get the list of all available network adapters\
+    \ using \u201Cipconfig /all\u201D command."
+  sample value: Microsoft Hyper-V Network Adapter
+---
+entity: registry
+data fields:
+- standard name: registry_key_name
+  type: string
+  description: ''
+  sample value: Run
+- standard name: registry_key_path
+  type: string
+  description: complete path of the registry key
+  sample value: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+- standard name: registry_key_value_name
+  type: string
+  description: ''
+  sample value: SecurityHealth
+- standard name: registry_key_value_type
+  type: string
+  description: ''
+  sample value: REG_EXPAND_SZ
+- standard name: registry_key_value_data
+  type: string
+  description: ''
+  sample value: '%ProgramFiles%\Windows Defender\MSASCuiL.exe'
+- standard name: registry_value_old_name
+  type: string
+  description: ''
+  sample value: SecurityHealth
+- standard name: registry_value_old_data
+  type: string
+  description: ''
+  sample value: C:\malware.exe

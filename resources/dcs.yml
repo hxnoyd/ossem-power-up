@@ -1,0 +1,11 @@
+data channel: sysmon
+description: sysmon monitoring
+coverage: 3
+timeliness: 4
+retention: 4
+---
+data channel: security
+description: windows security auditing
+coverage: 3
+timeliness: 5
+retention: 4

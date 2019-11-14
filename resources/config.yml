@@ -1,0 +1,8 @@
+ELASTIC_SERVER: localhost
+ELASTIC_PORT: 9200
+ELASTIC_USER: elastic
+ELASTIC_PASS: changeme
+OSSEM_YAML_DDM: ddm.yml
+OSSEM_YAML_DDS: dds.yml
+OSSEM_YAML_CIM: cim.yml
+OSSEM_YAML_DCS: dcs.yml
