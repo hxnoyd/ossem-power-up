@@ -135,6 +135,7 @@ optional arguments:
   --excel               export OSSEM DDM to excel
   --elastic             export OSSEM data models to elastic
   --yaml                export OSSEM data models to yaml
+  --layer               export OSSEM data models to navigator layer
 ```
 
 As you can see **power-up** can consume OSSEM data from two different formats:
@@ -211,12 +212,33 @@ $> python3 powerup.py -o ../OSSEM --elastic
 When exporting to Elastic, **power-up** will store all OSSEM data in elastic. Because the DDM is also enriched with the respective data quality dimensions, you will be able to create dashboards like this:
 ![](images/elastic.png)
 
+### Exporting to ATT&CK Navigator
+```
+$> python3 powerup.py -o ../OSSEM --layer
+  _____ _____ _____ _____ _____    _____ _____ _ _ _ _____ _____     _____ _____ __
+ |     |   __|   __|   __|     |  |  _  |     | | | |   __| __  |___|  |  |  _  |  |
+ |  |  |__   |__   |   __| | | |  |   __|  |  | | | |   __|    -|___|  |  |   __|__|
+ |_____|_____|_____|_____|_|_|_|  |__|  |_____|_____|_____|__|__|   |_____|__|  |__|
+
+[*] Profile path: profiles/default.yml
+[*] Parsing OSSEM from markdown
+[*] Exporting OSSEM to Naviagator Layer
+[*] Pulling ATT&CK data
+[*] Generating data source quality layer
+[*] Created output/ds_layer_20191119_220141.json
+```
+
+When exporting to layer, **power-up** will create an Attack Navigator Layer JSON file, with the respective data quality dimensions for every technique:
+![](images/layer.png)
+
+>Note: technique scores are derived from data sources average scores in the DDM.
+
 # Acknowledgements
 * Roberto Rodriguez [@Cyb3rWard0g](https://twitter.com/Cyb3rWard0g), Jose Luis Rodriguez [@Cyb3rPandaH](https://twitter.com/Cyb3rPandaH), and all community members for supporting [OSSEM](https://github.com/hunters-forge/OSSEM/).
 * Marcus Bakker [@bakk3rm](https://twitter.com/bakk3rm) and Ruben Bouman [@rubenb_2](https://twitter.com/rubenb_2/) for the inspiration on the Data Quality Dimensions from [DeTTECT](https://github.com/rabobank-cdc/DeTTECT).
 
 # To-Do
 - [ ] Create additional documentation
-- [ ] Export to ATT&CK Navigator Layer
+- [X] Export to ATT&CK Navigator Layer
 - [ ] Properly handle data dictionaries that share the same data channel, but have different schema depending on the operating system
 - [ ] Provide Kibana objects (visualizations and dashboards)

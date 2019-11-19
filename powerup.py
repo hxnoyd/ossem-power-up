@@ -4,16 +4,18 @@
 
 __appname__ = 'OSSEM Power-up!'
 __author__  = 'Ricardo Dias @hxnoyd'
-__version__ = "0.1"
+__version__ = "0.2"
 
 import re
 import os
 import sys
 import yaml
+import json
 import mistune
 import argparse
 from datetime import datetime
 from bs4 import BeautifulSoup
+from attackcti import attack_client
 from requests.auth import HTTPBasicAuth
 from elasticsearch import Elasticsearch
 from openpyxl.styles import Color
@@ -22,6 +24,86 @@ from openpyxl.worksheet.table import Table, TableStyleInfo
 from openpyxl.formatting.rule import ColorScaleRule, DataBarRule, FormulaRule
 
 CONFIG = yaml.load(open('resources/config.yml', 'r'), Loader=yaml.Loader)
+
+
+class attackCTI:
+    """This class performs all ATT&CK parsing related tasks"""
+
+    def __init__(self, ds_scores):
+        """Pull ATT&CK data from MITRE API"""
+        print('[*] Pulling ATT&CK data')
+
+        cli = attack_client()
+        attack = cli.get_enterprise(stix_format=False)
+        self.techniques = cli.remove_revoked(attack['techniques'])
+        self.ds_scores = ds_scores
+
+    def to_score(self, number):
+        return float(('{0:.2f}'.format(number)))
+
+    def get_techniques(self):
+        return self.techniques
+
+    def data_source_score(self, data_source):
+        #ds_scores = self.ds_scores
+        if data_source.lower() in self.ds_scores:
+            return self.ds_scores[data_source.lower()]
+        else:
+            return [0,0,0,0,0,0,0]
+
+    def get_ds_score(self, data_sources):
+        """Retrieves average score of all techniques"""
+
+        score_list = []
+        for ds in data_sources:
+            score_list.append(self.data_source_score(ds))
+
+        #calculate average of scores
+        score = [self.to_score(sum(v) / len(v)) for v in zip(*score_list)]
+        return score
+
+    def get_ds_quality_layer(self):
+        """ returns an attack data source quality navigator layer """
+        print('[*] Generating data source quality layer')
+
+        self.nav_layer = yaml.load(open('resources/navigator_layer.yml', 'r'), Loader=yaml.Loader)
+        self.nav_layer['name'] = 'Data Quality'
+        self.nav_layer['description'] = 'Data source quality according OSSEM data model'
+
+        for t in self.get_techniques():
+            comment = ""
+            if 'data_sources' in t:
+                scores = self.get_ds_score(t['data_sources'])
+                dq_coverage = scores[0]
+                dq_timeliness = scores[1]
+                dq_retention = scores[2]
+                dq_structure = scores[3]
+                dq_consistency = scores[4]
+                dq_score = scores[5]
+            else:
+                comment = 'technique has no data sources'
+                dq_coverage = 0
+                dq_timeliness = 0
+                dq_retention = 0
+                dq_structure = 0
+                dq_consistency = 0
+                dq_score = 0
+
+            technique = {
+                "techniqueID": t['technique_id'],
+                "score": dq_score,
+                "comment": comment,
+                "enabled": True,
+                "metadata": [
+                    {"name": "coverage", "value": str(dq_coverage)},
+                    {"name": "timeliness", "value": str(dq_timeliness)},
+                    {"name": "retention", "value": str(dq_retention)},
+                    {"name": "structure", "value": str(dq_structure)},
+                    {"name": "consistency", "value": str(dq_consistency)}]}
+
+            self.nav_layer['techniques'].append(technique)
+
+        return self.nav_layer
 
 
 class mdRenderer(mistune.Renderer):
@@ -326,6 +408,21 @@ class ossemParser():
 
         return True
 
+    def export_to_layer(self, path):
+        """ generates a json navigator layer of OSSEM data """
+        ds_scores = self.get_ds_scores()
+        attack = attackCTI(ds_scores)
+        layer = attack.get_ds_quality_layer()
+
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        dt = datetime.now().strftime("%Y%m%d_%H%M%S")
+        layer_file = open('{}ds_layer_{}.json'.format(path, dt), 'w')
+        layer_file.write(json.dumps(layer))
+        layer_file.close()
+        print('[*] Created {}ds_layer_{}.json'.format(path, dt))
+
     def get_data_channels(self):
         """ return data channels """
         return self.data_channels
@@ -375,6 +472,43 @@ class ossemParser():
                     'sample value': field['sample value']})
 
         return result
+
+    def get_ds_scores(self):
+        """Returns a summary of scores by data source"""
+        data_sources = {}
+        temp_sources = {}
+
+        #build a dict object to store a summary of data source scores
+        for entry in self.ddm_list:
+            dc = entry['att&ck data source']
+
+            if dc == 0:
+                #skip non covered data sources, to avoid polluting the average
+                continue
+
+            if dc in data_sources:
+                temp_sources[dc].append((
+                    entry['coverage'],
+                    entry['timeliness'],
+                    entry['retention'],
+                    entry['structure'],
+                    entry['consistency']))
+            else:
+                temp_sources[dc] = [(
+                    entry['coverage'],
+                    entry['timeliness'],
+                    entry['retention'],
+                    entry['structure'],
+                    entry['consistency'])]
+
+        #calculate data quality average for the five dimensions
+        for ds,dq in temp_sources.items():
+            dq_avg = [sum(v) / len(v) for v in zip(*dq)]
+            dq_score = sum(dq_avg) / len(dq_avg)
+            dq_avg.append(dq_score)
+            data_sources[ds.lower()] = dq_avg
+
+        return data_sources
 
 
 class Elastic:
@@ -427,9 +561,12 @@ if __name__ == "__main__":
     parser.add_argument('--yaml',
         help='export OSSEM data models to yaml',
         action='store_true')
+    parser.add_argument('--layer',
+        help='export OSSEM data models to navigator layer',
+        action='store_true')
     args = parser.parse_args()
 
-    if not args.excel and not args.elastic and not args.yaml:
+    if not args.excel and not args.elastic and not args.yaml and not args.layer:
         print('[!] You forgot to select an output. Check the available output arguments with --help.')
         sys.exit()
 
@@ -461,3 +598,9 @@ if __name__ == "__main__":
         print('[*] Exporting OSSEM to YAML')
         path = 'output/'
         ossem.export_to_yaml(path)
+
+    elif args.layer:
+        print('[*] Exporting OSSEM to Naviagator Layer')
+        path = 'output/'
+        ossem.enrich_ddm()
+        ossem.export_to_layer(path)

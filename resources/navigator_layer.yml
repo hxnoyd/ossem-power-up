@@ -1,0 +1,29 @@
+# ATT&CK Navigator Layer 2.2
+---
+version: '2.2'
+name:
+description:
+domain: mitre-enterprise
+filters:
+  stages:
+    - act
+  platforms:
+    - Windows
+    - Linux
+    - macOS
+sorting: 0
+viewMode: 0
+hideDisabled: False
+techniques: []
+gradient:
+  colors:
+    - '#ff6666'
+    - '#ffe766'
+    - '#8ec843'
+  minValue: 0
+  maxValue: 5
+legendItems: []
+showTacticRowBackground: True
+tacticRowBackground: '#003366'
+selectTechniquesAcrossTactics: True
+metadata: []
