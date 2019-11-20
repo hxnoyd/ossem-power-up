@@ -4,3 +4,4 @@ mistune
 openpyxl
 pyaml
 lxml
+attackcti
