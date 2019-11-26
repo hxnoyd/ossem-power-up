@@ -36,3 +36,8 @@ source:
 user:
     - user_name
     - user_domain
+group:
+    - group_name
+    - group_domain
+port:
+    - src_port
