@@ -224,7 +224,7 @@ class ossemParser():
             row['consistency'] = 0
             row['score'] = 0
             row['data channel'] = None
-            row['comment'] = None
+            row['comment'] = ''
 
             # TODO: some events have the same name across diferent platforms
             #       in the future OSSEM DDM will need to include OS so that we
@@ -256,19 +256,33 @@ class ossemParser():
                     row['source data object'],
                     row['destination data object']]
 
-                missing_entity = False
+                invalid = False
+                missing = 0
                 for entity in entities:
-                    if entity in self.profile:
-                        for field in self.profile[entity]:
-                            total_fields += 1
-                            field_matches = list(filter(lambda entry: entry['standard name'] == field, dd['data fields']))
-                            if field_matches:
-                                matched_fields += 1
-                    else:
-                        row['comment'] = 'one of the entities was not found'
-                        missing_entity = True
+                    match_cim = list(filter(lambda entry: entry['entity'] == entity, self.cim_entities))
 
-                if matched_fields > 0 and not missing_entity:
+                    if not entity:
+                        missing += 1
+                    elif match_cim and not invalid and missing < 2:
+                        match = match_cim[0]
+                        if match['entity'] in self.profile:
+                            for field in self.profile[match['entity']]:
+                                total_fields += 1
+                                field_matches = list(filter(lambda entry: entry['standard name'] == field, dd['data fields']))
+                                if field_matches:
+                                    matched_fields += 1
+                            #row['comment'] += ('{} matched {}/{} ').format(entity, matched_fields, total_fields)
+                        else:
+                            invalid = True
+                            row['comment'] = ('{} not found in profiles').format(entity)
+                    elif missing == 2: 
+                        row['comment'] = 'both entities are missing'
+                        invalid = True
+                    else:
+                        invalid = True
+                        row['comment'] = ('{} not found in CIM').format(entity)
+
+                if matched_fields > 0 and not invalid:
                     score = (float(matched_fields) / float(total_fields)) * 100
 
                     if score > 0 and score <= 25:
