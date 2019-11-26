@@ -261,8 +261,13 @@ class ossemParser():
                 for entity in entities:
                     match_cim = list(filter(lambda entry: entry['entity'] == entity, self.cim_entities))
 
-                    if not entity:
+                    if invalid:
+                        continue
+                    elif not entity:
                         missing += 1
+                        if missing == 2:
+                            row['comment'] = 'both entities are missing'
+                            invalid = True
                     elif match_cim and not invalid and missing < 2:
                         match = match_cim[0]
                         if match['entity'] in self.profile:
@@ -275,9 +280,6 @@ class ossemParser():
                         else:
                             invalid = True
                             row['comment'] = ('{} not found in profiles').format(entity)
-                    elif missing == 2: 
-                        row['comment'] = 'both entities are missing'
-                        invalid = True
                     else:
                         invalid = True
                         row['comment'] = ('{} not found in CIM').format(entity)
