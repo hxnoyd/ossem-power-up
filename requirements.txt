@@ -1,7 +1,7 @@
-beautifulsoup4
-elasticsearch
-mistune
-openpyxl
-pyaml
-lxml
-attackcti
+beautifulsoup4==4.8.1
+elasticsearch==7.1.0
+mistune==0.8.4
+openpyxl==3.0.1
+PyYAML==5.1.2
+lxml==4.4.1
+attackcti==0.3.0
