@@ -41,3 +41,9 @@ group:
     - group_domain
 port:
     - src_port
+kerberos_tgt:
+    - service_name
+    - ticket_encryption_type
+kerberos_tgs:
+    - service_name
+    - ticket_encryption_type
