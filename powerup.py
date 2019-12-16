@@ -109,8 +109,14 @@ class mdRenderer(mistune.Renderer):
     def __init__(self, renderer=None, inline=None, block=None, **kwargs):
         super().__init__(**kwargs)
         self.is_data_field = False
+        self.is_description = False
         self.data_fields = []
+        self.description = None
         self.context = kwargs.get('context')
+
+    def get_description(self):
+        """ returns object description """
+        return self.description
 
     def get_data_fields(self):
         """ returns a common information model entity """
@@ -130,7 +136,10 @@ class mdRenderer(mistune.Renderer):
         """ returns the header markdown entries """
         if text == 'Data Fields' or text == 'Data Dictionary':
             self.is_data_field = True
-
+        elif level == 1 and self.context == 'cim':
+            self.is_description = True
+        elif text == 'Description':
+            self.is_description = True
         return text
 
     def table(self, header, body):
@@ -143,6 +152,12 @@ class mdRenderer(mistune.Renderer):
 
         return header
 
+    def paragraph(self, text):
+        """ returns paragraphs """
+        if self.is_description:
+            self.description = text
+            self.is_description = False
+        return text
 
 class ossemParser():
     def __init__(self, profile):
@@ -174,6 +189,7 @@ class ossemParser():
                             md(md_file.read())
                             self.cim_entities.append({
                                 'entity': name.split('.')[0],
+                                'description': md.renderer.get_description(),
                                 'data fields': md.renderer.get_data_fields()})
 
                     #parse dd
@@ -188,6 +204,7 @@ class ossemParser():
                             self.data_dictionaries.append({
                                 'operating system': os_name,
                                 'data channel': data_channel,
+                                'description': md.renderer.get_description(),
                                 'event': re.sub('event-', '', name.split('.')[0]),
                                 'data fields': md.renderer.get_data_fields()})
 
