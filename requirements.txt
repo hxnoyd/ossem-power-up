@@ -3,5 +3,5 @@ elasticsearch==7.1.0
 mistune==0.8.4
 openpyxl==3.0.1
 PyYAML==5.4
-lxml==4.6.3
+lxml==4.6.5
 attackcti==0.3.0
